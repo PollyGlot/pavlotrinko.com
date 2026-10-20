@@ -1,0 +1,9 @@
+---
+import { defaultLocale } from '../i18n/locales'
+import { localeUrl } from '../lib/paths'
+
+// La racine n'a pas de contenu : toutes les pages vivent sous /fr/ ou /en/.
+// En statique, Astro.redirect produit une page de redirection (meta refresh) ;
+// le vrai 302 HTTP vient de public/_redirects, servi par Workers Assets.
+return Astro.redirect(localeUrl(defaultLocale))
+---

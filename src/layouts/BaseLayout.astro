@@ -1,0 +1,72 @@
+---
+import BaseHead from '../components/BaseHead.astro'
+import LanguageSwitcher from '../components/LanguageSwitcher.astro'
+import { type Locale, locales } from '../i18n/locales'
+import { useTranslations } from '../i18n/ui'
+import { feedUrl, localeUrl } from '../lib/paths'
+import { site } from '../site'
+
+interface Props {
+  lang: Locale
+  // Titre de la page ; absent sur l'accueil, qui porte le nom du site seul.
+  title?: string
+  description?: string
+  path: string
+  available?: readonly Locale[]
+  type?: 'website' | 'article'
+  noindex?: boolean
+}
+
+const { lang, title, description, path, available = locales, type = 'website', noindex = false } = Astro.props
+const t = useTranslations(lang)
+const fullTitle = title ? `${title} · ${t('site.title')}` : t('site.title')
+const nav = [
+  { path: 'posts/', label: t('nav.posts') },
+  { path: 'notes/', label: t('nav.notes') },
+  { path: 'projects/', label: t('nav.projects') },
+  { path: 'contact/', label: t('nav.contact') },
+]
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <BaseHead
+      lang={lang}
+      title={fullTitle}
+      description={description ?? t('site.description')}
+      path={path}
+      available={available}
+      type={type}
+      noindex={noindex}
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href={localeUrl(lang)} class="site-name">{site.author}</a>
+      <nav aria-label={t('nav.main')}>
+        <ul>
+          {nav.map((item) => (
+            <li>
+              <a href={localeUrl(lang, item.path)} aria-current={path.startsWith(item.path) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <LanguageSwitcher lang={lang} path={path} available={available} />
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>
+        <a href={localeUrl(lang, 'contact/')}>{t('footer.contact')}</a>
+        · <a href={feedUrl(lang)}>{t('footer.rss')}</a>
+        · <a href={site.github} rel="me">GitHub</a>
+      </p>
+      <p>{site.author} · {site.handle}</p>
+    </footer>
+  </body>
+</html>

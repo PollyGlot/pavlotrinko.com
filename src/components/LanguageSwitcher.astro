@@ -1,0 +1,32 @@
+---
+import { type Locale, localeNames, locales } from '../i18n/locales'
+import { useTranslations } from '../i18n/ui'
+import { localeUrl } from '../lib/paths'
+
+interface Props {
+  lang: Locale
+  path: string
+  available: readonly Locale[]
+}
+
+const { lang, path, available } = Astro.props
+const t = useTranslations(lang)
+// Sans traduction de la page, on envoie vers l'accueil de l'autre langue plutôt
+// que vers une 404.
+const links = locales
+  .filter((l) => l !== lang)
+  .map((l) => ({
+    lang: l,
+    href: localeUrl(l, available.includes(l) ? path : ''),
+  }))
+---
+
+<nav aria-label={t('nav.language')} class="language-switcher">
+  {
+    links.map((link) => (
+      <a href={link.href} hreflang={link.lang} lang={link.lang}>
+        {localeNames[link.lang]}
+      </a>
+    ))
+  }
+</nav>

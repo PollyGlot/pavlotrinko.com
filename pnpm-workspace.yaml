@@ -1,0 +1,4 @@
+allowBuilds:
+  # esbuild (Astro/Vite bundling) and workerd (wrangler's local runtime) ship native binaries.
+  esbuild: true
+  workerd: true

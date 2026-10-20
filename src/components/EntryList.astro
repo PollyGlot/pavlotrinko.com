@@ -1,0 +1,31 @@
+---
+import type { Locale } from '../i18n/locales'
+import { formatDate, localeUrl } from '../lib/paths'
+
+interface Props {
+  lang: Locale
+  items: { href: string; title: string; description: string; date: Date; prefix?: string }[]
+  empty: string
+}
+
+const { lang, items, empty } = Astro.props
+---
+
+{
+  items.length === 0 ? (
+    <p>{empty}</p>
+  ) : (
+    <ul class="entry-list">
+      {items.map((item) => (
+        <li>
+          <a href={localeUrl(lang, item.href)}>
+            {item.prefix && <span class="entry-prefix">{item.prefix}</span>}
+            {item.title}
+          </a>
+          <time datetime={item.date.toISOString()}>{formatDate(item.date, lang)}</time>
+          <p>{item.description}</p>
+        </li>
+      ))}
+    </ul>
+  )
+}

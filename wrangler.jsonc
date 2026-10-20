@@ -1,0 +1,19 @@
+{
+  // Site statique : pas de Worker, seulement les assets de dist/ (Workers Static Assets).
+  // Pas d'account_id ici : le dépôt est public, la CI le lit dans le secret
+  // CLOUDFLARE_ACCOUNT_ID (voir ~/dev/CLOUDFLARE.md).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pavlotrinko",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    // Les URL finissent par « / » (trailingSlash: 'always' dans astro.config.ts) :
+    // /fr/posts/x/ sert dist/fr/posts/x/index.html, /fr/posts/x redirige.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  // TODO(domain): une fois pavlotrinko.com acheté sur le compte Perso, ajouter
+  // "routes": [{ "pattern": "pavlotrinko.com", "custom_domain": true }]
+  // et décider de garder ou non l'adresse *.workers.dev ("workers_dev").
+  "observability": { "enabled": true }
+}

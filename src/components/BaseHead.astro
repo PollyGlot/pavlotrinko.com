@@ -1,0 +1,53 @@
+---
+import { type Locale, locales, localeTags } from '../i18n/locales'
+import { feedUrl, localeUrl } from '../lib/paths'
+import '../styles/base.css'
+
+interface Props {
+  lang: Locale
+  title: string
+  description: string
+  // Chemin sans la langue, et les langues où ce chemin existe.
+  path: string
+  available: readonly Locale[]
+  type?: 'website' | 'article'
+  // Pages hors index (404) : ni canonique ni alternates.
+  noindex?: boolean
+}
+
+const { lang, title, description, path, available, type = 'website', noindex = false } = Astro.props
+const canonical = new URL(localeUrl(lang, path), Astro.site)
+// TODO(og-image): pas d'og:image tant que la génération d'images OG n'existe pas.
+const alternates = locales
+  .filter((l) => available.includes(l))
+  .map((l) => ({ lang: l, href: new URL(localeUrl(l, path), Astro.site).href }))
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex" />}
+{!noindex && <link rel="canonical" href={canonical.href} />}
+{!noindex && alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={`Pavlo Trinko (${lang})`}
+  href={new URL(feedUrl(lang), Astro.site).href}
+/>
+<link rel="sitemap" href="/sitemap-index.xml" />
+<meta name="generator" content={Astro.generator} />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="Pavlo Trinko" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical.href} />
+<meta property="og:locale" content={localeTags[lang]} />
+{
+  alternates
+    .filter((a) => a.lang !== lang)
+    .map((a) => <meta property="og:locale:alternate" content={localeTags[a.lang]} />)
+}
+<meta name="twitter:card" content="summary" />

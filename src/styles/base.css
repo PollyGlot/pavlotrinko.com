@@ -1,0 +1,97 @@
+/*
+ * CSS de base, neutre et lisible. Aucune direction visuelle ici : pas de
+ * palette ni de police de marque, seulement les couleurs système et la pile
+ * de polices du système. Le design viendra remplacer ce fichier.
+ */
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 42rem;
+  padding: 1.5rem 1rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+  margin-bottom: 2rem;
+}
+
+.site-header ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-name {
+  font-weight: bold;
+}
+
+[aria-current="page"] {
+  font-weight: bold;
+}
+
+.site-footer {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+.entry-list {
+  padding: 0;
+  list-style: none;
+}
+
+.entry-list li {
+  margin-bottom: 1.25rem;
+}
+
+.entry-list time,
+.meta {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.entry-prefix {
+  margin-right: 0.5ch;
+  font-variant-numeric: tabular-nums;
+}
+
+.badge,
+.todo {
+  font-style: italic;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/*
+ * Shiki émet les deux thèmes en variables CSS et peint le clair en style inline :
+ * seul !important passe devant un style inline (patron documenté par Astro).
+ */
+@media (prefers-color-scheme: dark) {
+  .astro-code,
+  .astro-code span {
+    /* biome-ignore lint/complexity/noImportantStyles: surcharge du style inline de Shiki */
+    color: var(--shiki-dark) !important;
+    /* biome-ignore lint/complexity/noImportantStyles: surcharge du style inline de Shiki */
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}

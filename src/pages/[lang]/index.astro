@@ -1,0 +1,36 @@
+---
+import EntryList from '../../components/EntryList.astro'
+import type { Locale } from '../../i18n/locales'
+import { useTranslations } from '../../i18n/ui'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { entrySlug, getNotes, getPosts } from '../../lib/content'
+import { localeStaticPaths, localeUrl } from '../../lib/paths'
+import { site } from '../../site'
+
+export const getStaticPaths = localeStaticPaths
+
+const lang = Astro.params.lang as Locale
+const t = useTranslations(lang)
+const posts = (await getPosts(lang)).slice(0, 5)
+const notes = (await getNotes(lang)).slice(0, 5)
+---
+
+<BaseLayout lang={lang} path="">
+  <h1>{site.author}</h1>
+  <p class="lead">{t('home.intro')}</p>
+  <p><a href={localeUrl(lang, 'contact/')}>{t('contact.cta')}</a></p>
+
+  <h2>{t('home.latestPosts')}</h2>
+  <EntryList
+    lang={lang}
+    empty={t('posts.empty')}
+    items={posts.map((p) => ({ href: `posts/${entrySlug(p)}/`, ...p.data }))}
+  />
+
+  <h2>{t('home.latestNotes')}</h2>
+  <EntryList
+    lang={lang}
+    empty={t('notes.empty')}
+    items={notes.map((n) => ({ href: `notes/${entrySlug(n)}/`, prefix: `#${n.data.number}`, ...n.data }))}
+  />
+</BaseLayout>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<style>
+  .wrap{display:flex;flex-direction:column;gap:28px;font-family:var(--font-sans)}
+  .lbl{font-size:15px;margin:0 0 8px}
+  .lbl b{font-size:16px}
+  .lbl span{color:var(--muted-foreground)}
+  .mock{border-radius:var(--radius);overflow:hidden;height:400px;position:relative;box-shadow:0 0 0 1px var(--border)}
+  .note{font-size:12px;color:var(--muted-foreground);margin-top:6px}
+
+  /* A. Partition */
+  .score{background:#fbfbf8;color:#141414;font-family:"Bodoni 72","Didot",Georgia,serif;padding:22px 26px}
+  .score .top{display:flex;justify-content:space-between;align-items:baseline;font-family:Georgia,serif;font-size:12px;color:#555}
+  .score h1{font-weight:400;font-size:40px;margin:14px 0 2px;letter-spacing:.5px;text-align:center}
+  .score .sub{text-align:center;font-style:italic;font-size:15px;margin-bottom:6px}
+  .score .tempo{font-weight:700;font-style:italic;font-size:14px;margin:10px 0 6px}
+  .staff{display:grid;grid-template-columns:110px 1fr;align-items:center;height:44px}
+  .staff .who{font-style:italic;font-size:13px;text-align:right;padding-right:12px}
+  .lines{position:relative;height:26px;background:repeating-linear-gradient(#141414 0 1px,transparent 1px 6.25px)}
+  .n{position:absolute;width:9px;height:7px;border-radius:50%;background:#141414;transform:rotate(-20deg)}
+  .proj{position:absolute;top:-15px;font-family:Georgia,serif;font-size:11px;background:#fbfbf8;padding:0 3px}
+  .pencil{position:absolute;right:28px;bottom:50px;color:#1f4fd1;font-family:"Bradley Hand","Marker Felt",cursive;font-size:20px;border:2.5px solid #1f4fd1;border-radius:50% 46% 52% 44%;padding:10px 16px;transform:rotate(-4deg)}
+  .marks{position:absolute;left:26px;right:26px;bottom:16px;display:flex;gap:26px;font-family:Georgia,serif;font-size:13px}
+  .marks i{font-style:normal;font-weight:700;border:1.5px solid #141414;padding:0 5px;margin-right:6px}
+  .red{color:#c8262c}
+
+  /* B. Stands */
+  .pit{background:#0d0f12;color:#f2f2ee;font-family:"Helvetica Neue",Arial,sans-serif;padding:22px 26px;display:grid;grid-template-columns:1.1fr 1fr;gap:26px}
+  .pit h1{font-size:34px;line-height:1.05;margin:6px 0 10px;text-transform:uppercase;font-weight:800;letter-spacing:-.5px}
+  .pit .k{font-size:11px;letter-spacing:2px;color:#9a9a9a;text-transform:uppercase}
+  .pit p{color:#c9c9c4;font-size:14px;line-height:1.45;max-width:30ch}
+  .radio{display:inline-block;margin-top:14px;background:#ffd400;color:#0d0f12;font-weight:800;padding:12px 18px;text-transform:uppercase;font-size:14px;letter-spacing:.5px}
+  .tower{font-variant-numeric:tabular-nums;font-size:13px}
+  .row{display:grid;grid-template-columns:26px 1fr 70px 64px;gap:8px;align-items:center;padding:9px 10px;border-bottom:1px solid #22262c}
+  .row:nth-child(odd){background:#14171c}
+  .pos{font-weight:800}
+  .tag{font-size:11px;font-weight:700;padding:2px 6px;text-align:center}
+  .g{background:#00c853;color:#06210f}.p{background:#7a00ff}.y{background:#ffd400;color:#111}
+  .bar{width:4px;height:16px;display:inline-block;margin-right:8px;vertical-align:middle}
+
+  /* C. Classique */
+  .classic{background:#fff;color:#0b0b0c;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;padding:22px 30px}
+  .classic nav{display:flex;justify-content:space-between;font-size:14px;color:#6b6b70}
+  .classic nav b{color:#0b0b0c}
+  .classic .hero{display:flex;gap:18px;align-items:center;margin:30px 0 22px}
+  .av{width:64px;height:64px;border-radius:50%;background:#e4e4e8;display:grid;place-items:center;font-size:11px;color:#888}
+  .classic h1{font-size:28px;margin:0 0 4px;letter-spacing:-.5px}
+  .classic .hero p{margin:0;color:#6b6b70;font-size:15px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .cols h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#6b6b70;margin:0 0 8px}
+  .item{padding:8px 0;border-bottom:1px solid #eee;font-size:14px;display:flex;justify-content:space-between}
+  .item span{color:#999;font-size:12px}
+  .btn{display:inline-block;margin-top:14px;background:#2b59ff;color:#fff;padding:9px 16px;border-radius:8px;font-size:14px}
+</style></head><body>
+<div class="wrap">
+
+  <div>
+    <p class="lbl"><b>A · La partition</b> <span> : ton site est une partition, toi le chef, les agents les musiciens</span></p>
+    <div class="mock score">
+      <div class="top"><span>FR · <span style="color:#999">EN</span></span><span>Op. 2026</span></div>
+      <h1>Pavlo Trinko</h1>
+      <div class="sub">Product AI Builder · je dirige des agents IA pour livrer des apps</div>
+      <div class="tempo">Allegro <span style="font-weight:400">: storedeck v0.9 en cours</span></div>
+      <div class="staff"><div class="who">Pavlo, direction</div><div class="lines"><span class="n" style="left:8%;top:9px"></span><span class="n" style="left:46%;top:3px"></span><span class="n" style="left:82%;top:15px"></span></div></div>
+      <div class="staff"><div class="who">Claude</div><div class="lines"><span class="proj" style="left:6%">storedeck</span><span class="n" style="left:14%;top:12px"></span><span class="n" style="left:20%;top:6px"></span><span class="n" style="left:27%;top:9px"></span><span class="n" style="left:52%;top:15px"></span><span class="n" style="left:58%;top:9px"></span></div></div>
+      <div class="staff"><div class="who">Codex</div><div class="lines"><span class="proj" style="left:40%">verbum</span><span class="n" style="left:35%;top:3px"></span><span class="n" style="left:63%;top:12px"></span><span class="n" style="left:70%;top:6px"></span></div></div>
+      <div class="staff"><div class="who">Revue</div><div class="lines"><span class="n red" style="left:30%;top:9px;background:#c8262c"></span><span class="n" style="left:75%;top:3px;background:#c8262c"></span></div></div>
+      <div class="pencil">Écrire à Pavlo →</div>
+      <div class="marks"><span><i>A</i>Projets</span><span><i>B</i>Articles</span><span><i>C</i>Notes</span><span><i>D</i>Contact</span></div>
+    </div>
+    <div class="note">Original, raconte vraiment ton métier. Risque : il faut que la métaphore reste lisible pour un recruteur.</div>
+  </div>
+
+  <div>
+    <p class="lbl"><b>B · Le muret des stands</b> <span> : un écran de course F1, toi le directeur d'écurie</span></p>
+    <div class="mock pit">
+      <div>
+        <div class="k">FR / EN · Directeur d'écurie</div>
+        <h1>Pavlo Trinko<br>Product AI Builder</h1>
+        <p>Je ne pilote pas chaque voiture : je donne la stratégie, mes agents IA roulent, je valide chaque arrêt au stand.</p>
+        <div class="radio">📻 Radio à Pavlo</div>
+      </div>
+      <div class="tower">
+        <div class="k" style="margin-bottom:8px">Classement · projets (exemple)</div>
+        <div class="row"><span class="pos">1</span><span><i class="bar g"></i>storedeck</span><span>v0.9</span><span class="tag g">EN PISTE</span></div>
+        <div class="row"><span class="pos">2</span><span><i class="bar p"></i>verbum</span><span>v1.4</span><span class="tag p">LIVRÉ</span></div>
+        <div class="row"><span class="pos">3</span><span><i class="bar y"></i>lisso</span><span>v0.3</span><span class="tag y">AU STAND</span></div>
+        <div class="row"><span class="pos">4</span><span><i class="bar g"></i>google-play-cli</span><span>v2.1</span><span class="tag p">LIVRÉ</span></div>
+        <div class="row"><span class="pos">5</span><span><i class="bar y"></i>Note nº 014</span><span>hier</span><span class="tag y">NOUVEAU</span></div>
+      </div>
+    </div>
+    <div class="note">Très lisible, énergique, colle à ton vocabulaire (pitlane, harbor). Risque : ça peut faire déguisement de tableau de bord sportif.</div>
+  </div>
+
+  <div>
+    <p class="lbl"><b>C · Le classique</b> <span> : le portfolio dev standard, bien fait</span></p>
+    <div class="mock classic">
+      <nav><b>Pavlo Trinko</b><span>Projets · Articles · Notes · FR/EN</span></nav>
+      <div class="hero"><div class="av">avatar</div><div><h1>Pavlo Trinko</h1><p>Product AI Builder. Je construis des apps en pilotant des agents IA.</p></div></div>
+      <div class="cols">
+        <div><h2>Derniers articles</h2><div class="item">Diriger trois agents en parallèle <span>oct.</span></div><div class="item">Ma CI sur un Mac self-hosted <span>sept.</span></div><div class="item">Note : bwput en une ligne <span>sept.</span></div></div>
+        <div><h2>Projets</h2><div class="item">storedeck <span>app</span></div><div class="item">verbum <span>app</span></div><div class="item">google-play-cli <span>outil</span></div></div>
+      </div>
+      <div class="btn">Me contacter</div>
+    </div>
+    <div class="note">Sûr et efficace. Risque : ressemble à des milliers d'autres sites.</div>
+  </div>
+
+</div>
+</body></html>

@@ -1,0 +1,26 @@
+---
+import { defaultLocale, locales } from '../i18n/locales'
+import { useTranslations } from '../i18n/ui'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { localeUrl } from '../lib/paths'
+
+// Une seule 404 pour tout le site (Workers Assets sert /404.html) : elle parle
+// les deux langues, la page demandée pouvant être dans l'une ou l'autre.
+const t = useTranslations(defaultLocale)
+---
+
+<BaseLayout lang={defaultLocale} title={t('notFound.title')} path="" noindex>
+  {
+    locales.map((lang) => {
+      const tl = useTranslations(lang)
+      return (
+        <section lang={lang}>
+          <h1>{tl('notFound.title')}</h1>
+          <p>
+            <a href={localeUrl(lang)}>{tl('notFound.back')}</a>
+          </p>
+        </section>
+      )
+    })
+  }
+</BaseLayout>

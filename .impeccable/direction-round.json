@@ -1,0 +1,129 @@
+{
+  "title": "Direction visuelle de pavlotrinko.com",
+  "question": "Le tirage propose « La partition du chef ». Garde-la, prends une alternative, ou relance.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "La partition du chef",
+      "kicker": "THE ROLL",
+      "lineage": "Conducteur d'orchestre gravé (éditions Durand, Bärenreiter) annoté au crayon bicolore du chef",
+      "thesis": "Pavlo ne joue pas chaque instrument : il écrit et dirige la partition que ses agents jouent.",
+      "palette": ["#fbfbf8", "#141414", "#1f4fd1", "#c8262c", "#8a8a85"],
+      "materials": ["gravure musicale noire sur papier blanc froid", "crayon bleu et rouge du chef d'orchestre"],
+      "viewport": "Une page de conducteur : à gauche les pupitres (Pavlo, direction ; Claude ; Codex ; revue), en portées horizontales ; le titre « Pavlo Trinko, Product AI Builder » gravé comme un titre d'œuvre ; un bouton « Écrire à Pavlo » noté au crayon bleu dans la marge, toujours visible.",
+      "risk": "Si la métaphore reste décorative, on obtient une jolie page de musique qui n'explique pas le métier : chaque portée doit porter un vrai projet.",
+      "raised": [
+        {"from": "challenger-forge", "raise": "Chaque projet porte un état mesuré en chiffres tabulaires (version, dernière livraison), comme des mesures numérotées."},
+        {"from": "challenger-loteria", "raise": "Chaque note est numérotée et nommée d'un seul geste (« Étude nº 014 »), une série qu'on collectionne."},
+        {"from": "challenger-oscilloscope", "raise": "Une seule grille, celle des mesures de la portée, gouverne tout le site : blog, notes et vitrine."},
+        {"from": "challenger-bbs", "raise": "Une indication de tempo en tête de page dit ce que Pavlo construit en ce moment (« Allegro : storedeck v0.9 »)."}
+      ],
+      "wireframe": {"cols": 12, "rows": 10, "regions": [
+        {"label": "titre gravé + FR/EN", "x": 0, "y": 0, "w": 12, "h": 2},
+        {"label": "pupitres", "x": 0, "y": 2, "w": 2, "h": 6},
+        {"label": "portées = projets en cours", "x": 2, "y": 2, "w": 8, "h": 6},
+        {"label": "Écrire à Pavlo", "x": 10, "y": 2, "w": 2, "h": 2, "accent": true},
+        {"label": "repères A B C D : Projets, Mouvements, Études, Contact", "x": 0, "y": 8, "w": 12, "h": 2}
+      ]}
+    },
+    {
+      "id": "model-pick",
+      "label": "Le muret des stands",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Écrans de stratégie et graphismes de chronométrage télévisés de la Formule 1",
+      "thesis": "Le directeur d'écurie sur le muret : il ne pilote pas, il appelle la stratégie et ses équipes exécutent.",
+      "palette": ["#0d0f12", "#f2f2ee", "#ffd400", "#7a00ff", "#00c853"],
+      "materials": ["bandeaux de chrono à fond noir", "chiffres tabulaires condensés, codes couleur des secteurs"],
+      "viewport": "Une tour de chronométrage : chaque projet est une voiture avec son tour, son secteur et son pneu (statut) ; « Radio à Pavlo » est l'appel radio, en jaune.",
+      "risk": "C'est la piste la plus proche de ton vocabulaire (pitlane, harbor) et la plus familière ; elle peut tourner au costume de tableau de bord sportif."
+    },
+    {
+      "id": "challenger-ribbon",
+      "label": "Le ruban de provenance",
+      "verdict": "competitive",
+      "lineage": "Fiches de provenance des musées",
+      "thesis": "Chaque produit suit une ligne continue de l'idée à la livraison, en marquant ce que Pavlo a décidé et ce que les agents ont fait.",
+      "palette": ["#e9e2d3", "#1c1a17", "#b3122e", "#9a958c"],
+      "materials": ["ruban de soie rouge continu", "tampons d'inventaire, filets d'archives"],
+      "viewport": "Un seul ruban rouge qui traverse la page d'accueil, avec à chaque pli un projet daté et ses étapes.",
+      "case": "Fusion propre : la traçabilité décision/agent prouve le métier ; perd sur l'identification, un recruteur ou un utilisateur d'app ne vient pas lire une fiche de musée.",
+      "risk": "Le fond papier archive frôle le cliché crème et serif."
+    },
+    {
+      "id": "challenger-hardware",
+      "label": "La console de créateur",
+      "verdict": "competitive",
+      "lineage": "Instruments de bureau pour créateurs : touches beige et mastic, boutons moletés, écran ambre",
+      "thesis": "Le site est un instrument : chaque section est une touche, et la seule touche orange, c'est me contacter.",
+      "palette": ["#3a3d40", "#d9d4c7", "#b9b3a5", "#ff5a1f", "#ffb000"],
+      "materials": ["touches à légendes mono sublimées", "châssis gunmetal, aluminium moleté"],
+      "viewport": "Une grille de touches (Projets, Blog, Notes, FR/EN) et un petit écran ambre qui affiche la dernière note ; la touche orange « Contact » sous le pouce.",
+      "case": "Fusion propre : les devs s'y reconnaissent immédiatement ; perd sur la clarté, une console dit « gadget » plus que « je livre des produits ».",
+      "risk": "Esthétique très vue chez les devs depuis Teenage Engineering, et lecture longue pénible si les articles héritent de la console."
+    },
+    {
+      "id": "challenger-forge",
+      "label": "La forge",
+      "verdict": "declined",
+      "lineage": "Barre de fer sous le marteau-pilon",
+      "palette": ["#121010", "#5c5f63", "#ff6a1a", "#fff1c9"],
+      "materials": ["fer chauffé à blanc", "projections de calamine"],
+      "thesis": "Chaque itération est un coup de marteau qui allonge la pièce.",
+      "viewport": "Une coulée par projet, ligne par ligne.",
+      "risk": "Brutal et hors sujet pour un public d'apps grand public.",
+      "case": "Perd sur les deux axes : personne dans l'audience ne s'identifie au forgeron.",
+      "kept": "L'état mesuré de chaque projet en chiffres tabulaires."
+    },
+    {
+      "id": "challenger-loteria",
+      "label": "La lotería",
+      "verdict": "declined",
+      "lineage": "Cartes de lotería mexicaine",
+      "palette": ["#ffd23f", "#ff5d8f", "#1fc8c8", "#d62828", "#111111"],
+      "materials": ["aplats de couleur foire", "contours noirs épais"],
+      "thesis": "Les notes comme un jeu de cartes numérotées.",
+      "viewport": "Une tabla de 4 × 4 cartes-notes.",
+      "risk": "Emprunt culturel sans lien avec Pavlo.",
+      "case": "Perd sur les deux axes : costume culturel, et le métier disparaît derrière le jeu.",
+      "kept": "Chaque note numérotée et nommée d'un seul geste."
+    },
+    {
+      "id": "challenger-oscilloscope",
+      "label": "L'oscilloscope",
+      "verdict": "declined",
+      "lineage": "Oscilloscope cathodique sur banc de mesure",
+      "palette": ["#050806", "#39ff6a", "#5b6b60", "#ffb000"],
+      "materials": ["phosphore vert", "graticule gravé"],
+      "thesis": "Chaque projet comme un signal mesuré.",
+      "viewport": "Un écran unique où les projets se superposent en traces.",
+      "risk": "Costume d'outil, le cliché noir et néon.",
+      "case": "Perd sur les deux axes : déguisement d'instrument, illisible pour un utilisateur d'app.",
+      "kept": "Une seule grille gouverne tout."
+    },
+    {
+      "id": "challenger-bbs",
+      "label": "Le BBS de 2 h du matin",
+      "verdict": "declined",
+      "lineage": "Écrans ANSI des bulletin boards",
+      "palette": ["#000000", "#00aaaa", "#aa00aa", "#ffffff", "#0000aa"],
+      "materials": ["blocs CP437", "seize couleurs ANSI"],
+      "thesis": "Le site comme un BBS où l'on se connecte la nuit.",
+      "viewport": "Écran titre ANSI et menu numéroté.",
+      "risk": "Nostalgie terminal, le cliché du portfolio dev.",
+      "case": "Perd sur les deux axes : rut du terminal, et ferme la porte aux non-devs.",
+      "kept": "La présence rare : ce que Pavlo construit en ce moment."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code"},
+  "canon": true,
+  "canonCard": {
+    "label": "Le portfolio dev classique",
+    "thesis": "Ce que publient leerob, Josh Comeau ou Wes Bos, exécuté au meilleur niveau.",
+    "palette": ["#ffffff", "#0b0b0c", "#6b6b70", "#2b59ff"],
+    "materials": ["grille propre en sans-serif", "captures d'apps"],
+    "viewport": "Nom et une phrase de bio, liste des derniers articles, grille de projets, liens sociaux.",
+    "risk": "Indiscernable des milliers d'autres par construction."
+  },
+  "steer": true
+}

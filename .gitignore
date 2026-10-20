@@ -1,0 +1,16 @@
+# Build et caches
+dist/
+.astro/
+.wrangler/
+node_modules/
+
+# Local
+.env
+.env.*
+.dev.vars*
+.envrc
+.claude/settings.local.json
+.audit/
+.DS_Store
+*.log
+.impeccable/questions/

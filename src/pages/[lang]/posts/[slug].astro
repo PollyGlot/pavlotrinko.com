@@ -1,0 +1,50 @@
+---
+import { render } from 'astro:content'
+import { locales } from '../../../i18n/locales'
+import { useTranslations } from '../../../i18n/ui'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import { entrySlug, getPosts, translationsOf } from '../../../lib/content'
+import { formatDate } from '../../../lib/paths'
+
+export async function getStaticPaths() {
+  const paths = []
+  for (const lang of locales) {
+    for (const post of await getPosts(lang)) {
+      paths.push({ params: { lang, slug: entrySlug(post) }, props: { lang, post } })
+    }
+  }
+  return paths
+}
+
+const { lang, post } = Astro.props
+const t = useTranslations(lang)
+const slug = entrySlug(post)
+const available = await translationsOf('posts', slug)
+const { Content } = await render(post)
+const { title, description, date, updated } = post.data
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={description}
+  path={`posts/${slug}/`}
+  available={available}
+  type="article"
+>
+  <article class="prose">
+    <h1>{title}</h1>
+    <p class="meta">
+      <time datetime={date.toISOString()}>{formatDate(date, lang)}</time>
+      {
+        updated && (
+          <>
+            {' · '}
+            {t('post.updated')} <time datetime={updated.toISOString()}>{formatDate(updated, lang)}</time>
+          </>
+        )
+      }
+    </p>
+    <Content />
+  </article>
+</BaseLayout>
