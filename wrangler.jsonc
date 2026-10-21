@@ -17,8 +17,5 @@
   // un doublon du site.
   "routes": [{ "pattern": "pavlotrinko.com", "custom_domain": true }],
   "workers_dev": false,
-  // Les previews de PR (.github/workflows/preview.yml) vivent sur workers.dev,
-  // sous l'alias pr-<n> d'une version jamais déployée.
-  "preview_urls": true,
   "observability": { "enabled": true }
 }
