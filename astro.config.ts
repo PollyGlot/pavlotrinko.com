@@ -7,8 +7,6 @@ const site = 'https://pavlotrinko.com'
 
 export default defineConfig({
   // URL canonique : sert au sitemap, au RSS et aux balises Open Graph absolues.
-  // TODO(domain): le domaine n'est pas encore acheté ; tant qu'il ne pointe pas
-  // sur le Worker, ces URL absolues mènent nulle part.
   site,
   output: 'static',
   trailingSlash: 'always',

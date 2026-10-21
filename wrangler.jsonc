@@ -12,8 +12,10 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
-  // TODO(domain): une fois pavlotrinko.com acheté sur le compte Perso, ajouter
-  // "routes": [{ "pattern": "pavlotrinko.com", "custom_domain": true }]
-  // et décider de garder ou non l'adresse *.workers.dev ("workers_dev").
+  // Domaine personnalisé sur la zone pavlotrinko.com (compte Perso) ; wrangler
+  // crée l'enregistrement DNS. L'adresse *.workers.dev est coupée pour éviter
+  // un doublon du site.
+  "routes": [{ "pattern": "pavlotrinko.com", "custom_domain": true }],
+  "workers_dev": false,
   "observability": { "enabled": true }
 }
