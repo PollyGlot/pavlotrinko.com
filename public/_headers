@@ -1,0 +1,18 @@
+# Lu par Workers Static Assets (Worker sans script, voir wrangler.jsonc) ; Astro
+# copie ce fichier tel quel dans dist/. Les règles qui correspondent à une URL
+# se cumulent : un asset de /_astro/ reçoit aussi les en-têtes de /*.
+
+# Astro met une empreinte du contenu dans chaque nom de fichier de ce dossier :
+# un nouveau contenu est une nouvelle URL, jamais une mise à jour de l'ancienne.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSP : zéro JavaScript, donc aucun script autorisé. style-src-attr couvre les
+# attributs style="--shiki-…" que Shiki pose sur les blocs de code ; poser une
+# île ou un <style> inline impose d'ouvrir script-src ou style-src ici.
+/*
+  Content-Security-Policy: default-src 'none'; style-src 'self'; style-src-attr 'unsafe-inline'; font-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
