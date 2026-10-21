@@ -1,0 +1,27 @@
+---
+import type { Locale } from '../i18n/locales'
+import { useTranslations } from '../i18n/ui'
+import { site } from '../site'
+
+interface Props {
+  lang: Locale
+  // `handles` affiche le pseudo à côté du réseau (page contact).
+  handles?: boolean
+}
+
+const { lang, handles = false } = Astro.props
+const t = useTranslations(lang)
+---
+
+<ul class="social" aria-label={t('nav.social')}>
+  {
+    site.social.map((s) => (
+      <li>
+        <a href={s.url} rel="me">
+          {s.name}
+          {handles && <span class="social-handle">{s.handle}</span>} ↗
+        </a>
+      </li>
+    ))
+  }
+</ul>

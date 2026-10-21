@@ -1,4 +1,5 @@
 ---
+import SocialLinks from '../../components/SocialLinks.astro'
 import type { Locale } from '../../i18n/locales'
 import { useTranslations } from '../../i18n/ui'
 import BaseLayout from '../../layouts/BaseLayout.astro'
@@ -23,7 +24,6 @@ const t = useTranslations(lang)
       <p class="todo">{t('contact.pending')}</p>
     )
   }
-  <p>
-    <a href={site.github} rel="me">GitHub · {site.handle}</a>
-  </p>
+  <p>{t('contact.social')}</p>
+  <SocialLinks lang={lang} handles />
 </BaseLayout>
