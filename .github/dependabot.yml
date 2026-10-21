@@ -1,0 +1,28 @@
+# Le cooldown écarte une version publiée depuis moins de 7 jours : une version
+# compromise d'un paquet npm est en général retirée dans ce délai.
+version: 2
+updates:
+  # « npm » couvre aussi pnpm : Dependabot lit pnpm-lock.yaml.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    groups:
+      astro:
+        patterns: ['astro', '@astrojs/*']
+        update-types: [minor, patch]
+      dev-tools:
+        dependency-type: development
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns: ['*']
