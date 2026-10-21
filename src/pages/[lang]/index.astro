@@ -1,36 +1,70 @@
 ---
 import EntryList from '../../components/EntryList.astro'
+import SocialLinks from '../../components/SocialLinks.astro'
 import type { Locale } from '../../i18n/locales'
 import { useTranslations } from '../../i18n/ui'
 import BaseLayout from '../../layouts/BaseLayout.astro'
-import { entrySlug, getNotes, getPosts } from '../../lib/content'
+import { entrySlug, getNotes, getPosts, getProjects } from '../../lib/content'
 import { localeStaticPaths, localeUrl } from '../../lib/paths'
-import { site } from '../../site'
 
 export const getStaticPaths = localeStaticPaths
 
 const lang = Astro.params.lang as Locale
 const t = useTranslations(lang)
+const projects = await getProjects(lang)
 const posts = (await getPosts(lang)).slice(0, 5)
 const notes = (await getNotes(lang)).slice(0, 5)
 ---
 
 <BaseLayout lang={lang} path="">
-  <h1>{site.author}</h1>
-  <p class="lead">{t('home.intro')}</p>
-  <p><a href={localeUrl(lang, 'contact/')}>{t('contact.cta')}</a></p>
+  <div class="intro">
+    <!-- La rature est le seul ornement du site : <del>/<ins> pour que la
+         correction se lise aussi sans les styles. -->
+    <h1 class="headline">
+      {t('home.headlineStart')}{' '}
+      <span class="correction"><del>{t('home.headlineOld')}</del><ins> {t('home.headlineNew')}</ins></span>{
+        t('home.headlineEnd')
+      }
+      <span class="headline-second">{t('home.headlineSecond')}</span>
+    </h1>
+    <p class="lead">{t('home.intro')}</p>
+    <SocialLinks lang={lang} />
+  </div>
 
-  <h2>{t('home.latestPosts')}</h2>
-  <EntryList
-    lang={lang}
-    empty={t('posts.empty')}
-    items={posts.map((p) => ({ href: `posts/${entrySlug(p)}/`, ...p.data }))}
-  />
+  <section class="section">
+    <h2><a href={localeUrl(lang, 'projects/')}>{t('nav.projects')}</a></h2>
+    <ul class="entry-list">
+      {
+        projects.map((p) => (
+          <li>
+            <a href={localeUrl(lang, 'projects/')}>
+              <span class="entry-title">{p.data.title}</span>
+              {p.data.placeholder && <span class="badge">{t('projects.placeholder')}</span>}
+            </a>
+            <p>{p.data.summary}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 
-  <h2>{t('home.latestNotes')}</h2>
-  <EntryList
-    lang={lang}
-    empty={t('notes.empty')}
-    items={notes.map((n) => ({ href: `notes/${entrySlug(n)}/`, prefix: `#${n.data.number}`, ...n.data }))}
-  />
+  <section class="section">
+    <h2><a href={localeUrl(lang, 'notes/')}>{t('nav.notes')}</a></h2>
+    <EntryList
+      lang={lang}
+      empty={t('notes.empty')}
+      compact
+      items={notes.map((n) => ({ href: `notes/${entrySlug(n)}/`, prefix: `#${n.data.number}`, ...n.data }))}
+    />
+  </section>
+
+  <section class="section">
+    <h2><a href={localeUrl(lang, 'posts/')}>{t('nav.posts')}</a></h2>
+    <EntryList
+      lang={lang}
+      empty={t('posts.empty')}
+      compact
+      items={posts.map((p) => ({ href: `posts/${entrySlug(p)}/`, ...p.data }))}
+    />
+  </section>
 </BaseLayout>

@@ -1,6 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro'
 import LanguageSwitcher from '../components/LanguageSwitcher.astro'
+import SocialLinks from '../components/SocialLinks.astro'
 import { type Locale, locales } from '../i18n/locales'
 import { useTranslations } from '../i18n/ui'
 import { feedUrl, localeUrl } from '../lib/paths'
@@ -21,9 +22,9 @@ const { lang, title, description, path, available = locales, type = 'website', n
 const t = useTranslations(lang)
 const fullTitle = title ? `${title} · ${t('site.title')}` : t('site.title')
 const nav = [
+  { path: 'projects/', label: t('nav.projects') },
   { path: 'posts/', label: t('nav.posts') },
   { path: 'notes/', label: t('nav.notes') },
-  { path: 'projects/', label: t('nav.projects') },
   { path: 'contact/', label: t('nav.contact') },
 ]
 ---
@@ -42,31 +43,37 @@ const nav = [
     />
   </head>
   <body>
-    <header class="site-header">
-      <a href={localeUrl(lang)} class="site-name">{site.author}</a>
-      <nav aria-label={t('nav.main')}>
-        <ul>
-          {nav.map((item) => (
-            <li>
-              <a href={localeUrl(lang, item.path)} aria-current={path.startsWith(item.path) ? 'page' : undefined}>
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <LanguageSwitcher lang={lang} path={path} available={available} />
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer class="site-footer">
-      <p>
-        <a href={localeUrl(lang, 'contact/')}>{t('footer.contact')}</a>
-        · <a href={feedUrl(lang)}>{t('footer.rss')}</a>
-        · <a href={site.github} rel="me">GitHub</a>
-      </p>
-      <p>{site.author} · {site.handle}</p>
-    </footer>
+    <div class="shell">
+      <header class="site-header">
+        <!-- Le point rouge après le nom : la seule couleur de l'en-tête. -->
+        <a href={localeUrl(lang)} class="site-name">{site.author}<span class="mark">.</span></a>
+        <div class="site-nav">
+          <nav aria-label={t('nav.main')}>
+            <ul>
+              {nav.map((item) => (
+                <li>
+                  <a href={localeUrl(lang, item.path)} aria-current={path.startsWith(item.path) ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <LanguageSwitcher lang={lang} path={path} available={available} />
+        </div>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <p>
+          {t('contact.cta')} <a href={localeUrl(lang, 'contact/')}>{t('footer.contact')}</a>
+        </p>
+        <SocialLinks lang={lang} />
+        <p class="meta">
+          {site.author} · {site.handle} · <a href={feedUrl(lang)}>{t('footer.rss')}</a>
+        </p>
+      </footer>
+    </div>
   </body>
 </html>

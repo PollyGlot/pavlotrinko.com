@@ -6,24 +6,26 @@ interface Props {
   lang: Locale
   items: { href: string; title: string; description: string; date: Date; prefix?: string }[]
   empty: string
+  // Une ligne par entrée, sans description : les listes de l'accueil.
+  compact?: boolean
 }
 
-const { lang, items, empty } = Astro.props
+const { lang, items, empty, compact = false } = Astro.props
 ---
 
 {
   items.length === 0 ? (
-    <p>{empty}</p>
+    <p class="meta">{empty}</p>
   ) : (
-    <ul class="entry-list">
+    <ul class:list={['entry-list', { compact }]}>
       {items.map((item) => (
         <li>
           <a href={localeUrl(lang, item.href)}>
             {item.prefix && <span class="entry-prefix">{item.prefix}</span>}
-            {item.title}
+            <span class="entry-title">{item.title}</span>
           </a>
           <time datetime={item.date.toISOString()}>{formatDate(item.date, lang)}</time>
-          <p>{item.description}</p>
+          {!compact && <p>{item.description}</p>}
         </li>
       ))}
     </ul>
